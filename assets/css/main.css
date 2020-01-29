@@ -1985,7 +1985,7 @@ ul.icons {
     #banner button:hover,
     #banner .button:hover {
       box-shadow: inset 0 0 0 1px #ce1b28;
-      color: #18077a !important; }
+      color: #ce1b28 !important; }
       #banner input[type="submit"]:hover:active,
       #banner input[type="reset"]:hover:active,
       #banner input[type="button"]:hover:active,
@@ -2143,7 +2143,7 @@ ul.icons {
     width: 100%;
     z-index: 1; }
   #banner:after {
-    background: linear-gradient(135deg, #ce1b28 0%, #111111 74%);
+    background: linear-gradient(135deg, #18077a 0%, #111111 74%);
     content: ' ';
     display: block;
     height: 100%;
