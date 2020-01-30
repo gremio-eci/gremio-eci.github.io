@@ -2340,6 +2340,11 @@ ul.icons {
     #cta {
       background-attachment: scroll; } }
 
+/* Random Stuff */
+#dark {
+  color: #111111;
+}
+
 /* Footer */
 #footer {
   background-color: #111111;
