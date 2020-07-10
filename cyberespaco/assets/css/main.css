@@ -3200,6 +3200,9 @@
 			#banner {
 				padding: 6em 2em 6em 2em;
 			}
+				#banner-title {
+					font-size: 2.25em;
+				}
 
 				#banner br {
 					display: none;
