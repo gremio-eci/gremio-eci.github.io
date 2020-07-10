@@ -42,9 +42,11 @@
 			letter-spacing: 1px;
 			text-decoration: none;
 			text-transform: uppercase;
+			text-shadow: 0.5vmin 0 rgba(255, 0, 0, 0.5), -0.5vmin 0 rgba(0, 0, 255, 0.5);
 			font-size: 4em;
-			font-weight: 900;
-			color: #323338;
+			font-weight: bold;
+			font-family: 'Kredit';
+			color: rgba(200, 255, 255, 0.8);
 		}
 
 		#logo span
@@ -52,9 +54,11 @@
 			display: block;
 			padding-top: 1em;
 			letter-spacing: 1px;
-			text-transform: uppercase;
+			/* text-transform: uppercase; */
+			text-shadow: 0.2vmin 0 rgba(0, 0, 0, 1), -0.2vmin 0 rgba(0,0,0,1),
+						 0 0.2vmin rgba(0, 0, 0, 1), 0 -0.2vmin rgba(0,0,0,1);
 			font-size: 1.2em;
-			color: #8e8588;
+			color: #ffffff;
 		}			
 			
 
@@ -84,10 +88,12 @@
 				letter-spacing: 1px;
 				text-decoration: none;
 				text-transform: uppercase;
+				text-shadow: 0.2vmin 0 rgba(0, 0, 0, 1), -0.2vmin 0 rgba(0,0,0,1),
+							 0 0.2vmin rgba(0, 0, 0, 1), 0 -0.2vmin rgba(0,0,0,1);
 				font-weight: 200;
 				font-size: 1em;
 				outline: 0;
-				color: #323338;
+				color: rgba(255, 255, 255, 1);
 			}
 
 

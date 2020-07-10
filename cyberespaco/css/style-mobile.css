@@ -180,9 +180,11 @@
 			letter-spacing: 1px;
 			text-decoration: none;
 			text-transform: uppercase;
+			text-shadow: 0.5vmin 0vmin 0 rgba(255, 0, 0, 0.5), -0.5vmin 0vmin 0 rgba(0, 0, 255, 0.5);
 			font-size: 2em;
 			font-weight: 900;
-			color: #323338;
+			font-family: 'Kredit';
+			color: #ffffff;
 		}
 
 		#logo span
