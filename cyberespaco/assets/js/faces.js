@@ -6,12 +6,14 @@ import * as THREE from 'https://threejs.org/build/three.module.js';
 import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://threejs.org/examples/jsm/loaders/GLTFLoader.js';
 
-var camera, scene, renderer; //, stats;
+var camera, scene, renderer, element; //, stats;
 
 init();
 animate();
 
 function init() {
+
+	element = document.getElementById("three-banner");
 
 	camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 0.1, 100 );
 	camera.position.z = 20;
@@ -38,13 +40,11 @@ function init() {
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	document.getElementById("three-banner").appendChild( renderer.domElement );
+	element.appendChild( renderer.domElement );
 
 	//var controls = new OrbitControls( camera, renderer.domElement );
 	//controls.minDistance = 1000;
 	//controls.maxDistance = 5000;
-
-	//
 
 	// stats = new Stats();
 	// document.body.appendChild( stats.dom );
@@ -95,8 +95,8 @@ function buildTwistMaterial( amount ) {
 
 function onWindowResize() {
 
-	var width = window.innerWidth;
-	var height = window.innerHeight;
+	var width = element.innerWidth;
+	var height = element.innerHeight;
 
 	camera.aspect = width / height;
 	camera.updateProjectionMatrix();
