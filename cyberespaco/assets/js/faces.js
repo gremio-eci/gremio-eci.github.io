@@ -18,7 +18,7 @@ function init() {
 	scene = new THREE.Scene();
 
 	var loader = new GLTFLoader();
-	loader.load( '.three/models/gltf/LeePerrySmith/LeePerrySmith.glb', function ( gltf ) {
+	loader.load( './three/models/gltf/LeePerrySmith/LeePerrySmith.glb', function ( gltf ) {
 
 		var geometry = gltf.scene.children[ 0 ].geometry;
 
