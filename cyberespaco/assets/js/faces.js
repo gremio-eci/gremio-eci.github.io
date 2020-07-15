@@ -15,7 +15,7 @@ function init() {
 
 	element = document.getElementById("three-banner");
 
-	camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 0.1, 100 );
+	camera = new THREE.PerspectiveCamera( 27, element.innerWidth / element.innerHeight, 0.1, 100 );
 	camera.position.z = 20;
 
 	scene = new THREE.Scene();
@@ -39,7 +39,7 @@ function init() {
 
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize( element.innerWidth, element.innerHeight );
 	element.appendChild( renderer.domElement );
 
 	//var controls = new OrbitControls( camera, renderer.domElement );
@@ -94,13 +94,14 @@ function buildTwistMaterial( amount ) {
 //
 
 function onWindowResize() {
-	var width = $(element).width();
-	var height = $(element).height();
+	const canvas = renderer.domElement;
+	const width = canvas.innerWidth;
+	const height = canvas.innerHeight;
 
 	camera.aspect = width / height;
 	camera.updateProjectionMatrix();
 
-	renderer.setSize( width, height, false );
+	renderer.setSize( width, height );
 
 }
 
