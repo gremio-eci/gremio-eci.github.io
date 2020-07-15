@@ -94,8 +94,8 @@ function buildTwistMaterial( amount ) {
 //
 
 function onWindowResize() {
-	var width = element.innerWidth;
-	var height = element.innerHeight;
+	var width = $(element).width();
+	var height = $(element).height();
 
 	camera.aspect = width / height;
 	camera.updateProjectionMatrix();
