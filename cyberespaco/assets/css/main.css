@@ -2557,6 +2557,13 @@
 
 /* Section/Article */
 
+	section.three-banner {
+		text-align: center;
+		border-style: dashed;
+		border-width: 1em;
+		border: purple;
+	}
+
 	section.special, article.special {
 		text-align: center;
 	}

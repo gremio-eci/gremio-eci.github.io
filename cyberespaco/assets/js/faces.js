@@ -94,14 +94,13 @@ function buildTwistMaterial( amount ) {
 //
 
 function onWindowResize() {
-
 	var width = element.innerWidth;
 	var height = element.innerHeight;
 
 	camera.aspect = width / height;
 	camera.updateProjectionMatrix();
 
-	renderer.setSize( width, height );
+	renderer.setSize( width, height, false );
 
 }
 
