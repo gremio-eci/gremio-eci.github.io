@@ -13,8 +13,8 @@ animate();
 
 function init() {
 
-	element = document.getElementById("three-banner");
-
+	element = document.getElementById("threebanner");
+	console.log(element);
 	console.log("width: ", element.innerWidth);
 	console.log("height: ", element.innerHeight);
 
