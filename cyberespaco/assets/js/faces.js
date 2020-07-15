@@ -1,9 +1,10 @@
-import * as THREE from './three/build/three.module.js';
+
+import * as THREE from 'https://threejs.org/build/three.module.js';
 
 //import Stats from './jsm/libs/stats.module.js';
 
-import { OrbitControls } from './three/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from './three/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'https://threejs.org/examples/jsm/loaders/GLTFLoader.js';
 
 var camera, scene, renderer; //, stats;
 
@@ -18,7 +19,7 @@ function init() {
 	scene = new THREE.Scene();
 
 	var loader = new GLTFLoader();
-	loader.load( './three/models/gltf/LeePerrySmith/LeePerrySmith.glb', function ( gltf ) {
+	loader.load( 'https://threejs.org/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb', function ( gltf ) {
 
 		var geometry = gltf.scene.children[ 0 ].geometry;
 
