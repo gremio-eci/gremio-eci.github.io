@@ -15,6 +15,9 @@ function init() {
 
 	element = document.getElementById("three-banner");
 
+	console.log("width: ", element.innerWidth);
+	console.log("height: ", element.innerHeight);
+
 	camera = new THREE.PerspectiveCamera( 27, element.innerWidth / element.innerHeight, 0.1, 100 );
 	camera.position.z = 20;
 
