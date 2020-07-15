@@ -40,9 +40,9 @@ function init() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.getElementById("three-banner").appendChild( renderer.domElement );
 
-	var controls = new OrbitControls( camera, renderer.domElement );
-	controls.minDistance = 1000;
-	controls.maxDistance = 5000;
+	//var controls = new OrbitControls( camera, renderer.domElement );
+	//controls.minDistance = 1000;
+	//controls.maxDistance = 5000;
 
 	//
 
