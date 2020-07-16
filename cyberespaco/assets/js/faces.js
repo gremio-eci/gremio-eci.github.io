@@ -23,8 +23,8 @@ function init() {
 
 		var geometry = gltf.scene.children[ 0 ].geometry;
 
-		var mesh = new THREE.Mesh( geometry, buildTwistMaterial( 2.0 ) );
-		mesh.position.x = - 5.0;
+		var mesh = new THREE.Mesh( geometry, buildTwistMaterial( + 2.0 ) );
+		mesh.position.x = - 6.0;
 		mesh.position.y = - 0.5;
 		scene.add( mesh );
 
@@ -33,8 +33,8 @@ function init() {
 		mesh.position.y = - 0.5;
 		scene.add( mesh );
 
-		var mesh = new THREE.Mesh( geometry, buildTwistMaterial( 2.0 ) );
-		mesh.position.x = + 5.0;
+		var mesh = new THREE.Mesh( geometry, buildTwistMaterial( + 2.0 ) );
+		mesh.position.x = + 6.0;
 		mesh.position.y = - 0.5;
 		scene.add( mesh );
 
