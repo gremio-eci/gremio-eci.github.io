@@ -1,0 +1,22 @@
+#banner {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	text-align: center;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	z-index: 1; /* TODO Solve this in HTML */
+}
+
+#banner a {
+    text-decoration: none;
+}
+
+#banner a:hover {
+    text-decoration: underline;
+}
