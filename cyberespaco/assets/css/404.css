@@ -1,4 +1,22 @@
+@font-face{
+	font-family:'VCR-OSD-MONO';
+	src:url('../fonts/VCR-OSD-MONO/VCR_OSD_MONO.ttf') format('truetype')
+}
+
+html {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100%;
+    width: 100%;
+}
+
 #banner {
+    color: #ffffff !important;
 	position: absolute;
 	top: 0px;
 	width: 100%;
@@ -9,14 +27,27 @@
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	pointer-events: none;
+    pointer-events: none;
+    font-family: 'VCR-OSD-MONO';
+    font-size: 3em;
 	z-index: 1; /* TODO Solve this in HTML */
 }
 
-#banner a {
+#banner p {
+    color: #ffffff !important;
     text-decoration: none;
+    font-size: 0.7em;
+    text-shadow: 0.2vmin 0 black, -0.2vmin 0 black, 0 0.2vmin black, 0 -0.2vmin black;
+}
+
+#banner a {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 0.5em;
+    pointer-events: all;
 }
 
 #banner a:hover {
     text-decoration: underline;
+    text-shadow: 0.2vmin 0 black, -0.2vmin 0 black, 0 0.2vmin black, 0 -0.2vmin black;
 }
