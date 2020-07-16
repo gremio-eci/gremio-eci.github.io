@@ -2575,7 +2575,7 @@
 			position: absolute;
 			top: 0;
 			width: 100%;
-			padding: 10px;
+			padding: 0;
 			box-sizing: border-box;
 			text-align: center;
 			-moz-user-select: none;
@@ -2614,6 +2614,110 @@
 
 		.three-banner header .actions li a {
 			pointer-events: all;
+		}
+
+		#button-into {
+			display: inherit;
+		}
+
+		#button-under {
+			display: none;
+		}
+
+			#button-under li{
+				display: block;
+			}
+
+		@media screen and (max-width: 1280px) {
+
+			.three-banner header h2{
+				margin-top: 5%;
+				font-size: 5em;
+				margin-bottom: 10%;
+			}
+
+			.three-banner header p{
+				font-size: 3em;
+				margin-bottom: 10%;
+			}
+
+			#button-into {
+				display: inherit;
+			}
+
+			#button-under {
+				display: none;
+			}
+	
+		}
+	
+		@media screen and (max-width: 980px) {
+	
+			.three-banner header h2{
+				margin-top: 5%;
+				font-size: 4em;
+				margin-bottom: 10%;
+			}
+
+			.three-banner header p{
+				font-size: 2.5em;
+				margin-bottom: 5%;
+			}
+
+			#button-into {
+				display: inherit;
+			}
+	
+			#button-under {
+				display: none;
+			}
+
+		}
+	
+		@media screen and (max-width: 736px) {
+	
+			.three-banner header h2{
+				margin-top: 4%;
+				font-size: 3em;
+				margin-bottom: 10%;
+			}
+
+			.three-banner header p{
+				font-size: 2em;
+				margin-bottom: 0%;
+			}
+
+			#button-into {
+				display: none;
+			}
+	
+			#button-under {
+				display: inherit;
+			}
+	
+		}
+	
+		@media screen and (max-width: 480px) {
+	
+			.three-banner header h2{
+				margin-top: 5%;
+				font-size: 1.75em;
+				margin-bottom: 10%;
+			}
+
+			.three-banner header p{
+				font-size: 1em;
+				margin-bottom: 10%;
+			}
+
+			#button-into {
+				display: none;
+			}
+	
+			#button-under {
+				display: inherit;
+			}
+	
 		}
 
 	section.special, article.special {
