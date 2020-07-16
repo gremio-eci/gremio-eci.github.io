@@ -4,6 +4,10 @@
 	font-family:'Kredit';
 	src:url('../fonts/kredit/kredit.ttf') format('truetype')
 }
+@font-face{
+	font-family:'VCR-OSD-MONO';
+	src:url('../fonts/VCR-OSD-MONO/VCR_OSD_MONO.ttf') format('truetype')
+}
 /*
 	Spatial by TEMPLATED
 	templated.co @templatedco
@@ -2562,12 +2566,55 @@
 
 /* Section/Article */
 
-	section.three-banner {
-		text-align: center;
-		border-style: dashed;
-		border-width: 1em;
-		border: purple;
+	.three-banner {
+		position: relative;
+		display: block;
 	}
+
+		.three-banner header{
+			position: absolute;
+			top: 0;
+			width: 100%;
+			padding: 10px;
+			box-sizing: border-box;
+			text-align: center;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			pointer-events: none;
+			z-index: 1;
+		}
+
+			.three-banner header h2{
+				margin-top: 5%;
+				color: rgba(255, 255, 255, 0.8);
+				display: inline-block;
+				font-family: 'Kredit';
+				font-size: 5em;
+				font-weight: lighter;
+				text-transform: uppercase;
+				text-shadow: 0.4vmin 0 rgba(0, 255, 255, 0.7), -0.4vmin 0 rgba(255, 0, 255, 0.7),
+				 			 0.2vmin 0 black, 0  0.2vmin black,
+							-0.2vmin 0 black, 0 -0.2vmin black;
+				margin-bottom: 10%;
+			}
+
+			.three-banner header p{
+				color: rgba(255, 255, 255, 1);
+				font-size: 3em;
+				font-family: 'VCR-OSD-MONO';
+				text-shadow: 0.2vmin 0 black, -0.2vmin 0 black, 0 0.2vmin black, 0 -0.2vmin black;
+				margin-bottom: 10%;
+			}
+
+		.three-banner header .actions {
+			margin-top: 0;
+		}
+
+		.three-banner header .actions li a {
+			pointer-events: all;
+		}
 
 	section.special, article.special {
 		text-align: center;
