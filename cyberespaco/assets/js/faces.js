@@ -23,13 +23,13 @@ function init() {
 
 		var geometry = gltf.scene.children[ 0 ].geometry;
 
-		var mesh = new THREE.Mesh( geometry, buildTwistMaterial( 2.0 ) );
-		mesh.position.x = - 3.5;
-		mesh.position.y = - 0.5;
-		scene.add( mesh );
+		//var mesh = new THREE.Mesh( geometry, buildTwistMaterial( 2.0 ) );
+		//mesh.position.x = - 3.5;
+		//mesh.position.y = - 0.5;
+		//scene.add( mesh );
 
 		var mesh = new THREE.Mesh( geometry, buildTwistMaterial( - 2.0 ) );
-		mesh.position.x = 3.5;
+		mesh.position.x = 0.0;
 		mesh.position.y = - 0.5;
 		scene.add( mesh );
 
