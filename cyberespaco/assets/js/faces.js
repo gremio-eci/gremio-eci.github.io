@@ -26,16 +26,19 @@ function init() {
 		var mesh = new THREE.Mesh( geometry, buildTwistMaterial( + 2.0 ) );
 		mesh.position.x = - 6.0;
 		mesh.position.y = - 0.5;
+		mesh.position.z = - 3.0
 		scene.add( mesh );
 
 		var mesh = new THREE.Mesh( geometry, buildTwistMaterial( - 2.0 ) );
 		mesh.position.x = + 0.0;
 		mesh.position.y = - 0.5;
+		mesh.position.z = + 0.0
 		scene.add( mesh );
 
 		var mesh = new THREE.Mesh( geometry, buildTwistMaterial( + 2.0 ) );
 		mesh.position.x = + 6.0;
 		mesh.position.y = - 0.5;
+		mesh.position.z = - 3.0
 		scene.add( mesh );
 
 	} );
