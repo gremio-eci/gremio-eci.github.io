@@ -43,9 +43,10 @@ function init() {
 
 	} );
 
-	renderer = new THREE.WebGLRenderer( { antialias: true, canvas: document.querySelector(".three-banner canvas") } );
+	renderer = new THREE.WebGLRenderer( { alpha: true, antialias: true, canvas: document.querySelector(".three-banner canvas") } );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	//renderer.setSize( element.innerWidth, element.innerHeight );
+	renderer.setClearColor( 0xffffff, 0);
 	//element.appendChild( renderer.domElement );
 
 	//var controls = new OrbitControls( camera, renderer.domElement );
