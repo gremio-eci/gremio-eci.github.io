@@ -13,12 +13,7 @@ animate();
 
 function init() {
 
-	element = document.getElementById("threebanner");
-	console.log(element);
-	console.log("width: ", element.innerWidth);
-	console.log("height: ", element.innerHeight);
-
-	camera = new THREE.PerspectiveCamera( 27, element.innerWidth / element.innerHeight, 0.1, 100 );
+	camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 0.1, 100 );
 	camera.position.z = 20;
 
 	scene = new THREE.Scene();
@@ -40,10 +35,10 @@ function init() {
 
 	} );
 
-	renderer = new THREE.WebGLRenderer( { antialias: true } );
+	renderer = new THREE.WebGLRenderer( { antialias: true, canvas: document.querySelector(".three-banner canvas") } );
 	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( element.innerWidth, element.innerHeight );
-	element.appendChild( renderer.domElement );
+	//renderer.setSize( element.innerWidth, element.innerHeight );
+	//element.appendChild( renderer.domElement );
 
 	//var controls = new OrbitControls( camera, renderer.domElement );
 	//controls.minDistance = 1000;
@@ -55,7 +50,6 @@ function init() {
 	// EVENTS
 
 	window.addEventListener( 'resize', onWindowResize, false );
-
 }
 
 function buildTwistMaterial( amount ) {
@@ -98,16 +92,15 @@ function buildTwistMaterial( amount ) {
 
 function onWindowResize() {
 	const canvas = renderer.domElement;
-	const width = canvas.innerWidth;
-	const height = canvas.innerHeight;
-
-	camera.aspect = width / height;
-	camera.updateProjectionMatrix();
-
-	renderer.setSize( width, height );
-
+	const width = canvas.clientWidth;
+	const height = canvas.clientHeight;
+	if (canvas.width !== width ||canvas.height !== height) {
+		// you must pass false here or three.js sadly fights the browser
+		renderer.setSize(width, height, false);
+		camera.aspect = width / height;
+		camera.updateProjectionMatrix();
+	}
 }
-
 //
 
 function animate() {
@@ -141,3 +134,5 @@ function render() {
 	renderer.render( scene, camera );
 
 }
+
+onWindowResize();
