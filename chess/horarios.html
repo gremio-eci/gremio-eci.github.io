@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horários - Campeonato de Xadrez ECI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c2c2c;
+            --accent-color: #8B4513;
+            --light-bg: #f8f8f8;
+            --text-color: #333;
+            --border-color: #e0e0e0;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+        
+        /* Estilos do Menu de Navegação */
+        nav {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2em;
+            text-decoration: none;
+            padding: 15px 0;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 1.5em;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links li {
+            position: relative;
+        }
+        
+        .nav-links a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 20px 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .nav-links a.active {
+            color: #fff;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 15px 0;
+        }
+        
+        /* Estilos do Header */
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1586165368502-1bad197a6461?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+        
+        /* Estilos para a tabela de horários */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .schedule-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        .schedule-table tr {
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .schedule-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+        
+        .schedule-table tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .schedule-table td {
+            padding: 12px 15px;
+        }
+        
+        .schedule-date {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        
+        .schedule-time {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+        }
+        
+        .schedule-players {
+            font-weight: 500;
+        }
+        
+        .schedule-location {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .next-match {
+            background-color: rgba(139, 69, 19, 0.1) !important;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .day-header {
+            background-color: #f0f0f0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            color: var(--primary-color);
+        }
+        
+        .filter-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-btn {
+            background-color: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+            }
+            
+            .nav-links a {
+                padding: 15px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .schedule-table {
+                font-size: 0.9em;
+            }
+            
+            .schedule-table th, 
+            .schedule-table td {
+                padding: 8px 10px;
+            }
+            
+            .schedule-location {
+                display: none; /* Esconde a coluna de localização em telas pequenas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">♚</span>
+                <span>Campeonato de Xadrez ECI</span>
+            </a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="horarios.html" class="active">Horários</a></li>
+                <li><a href="participantes.html">Participantes</a></li>
+                <!--<li><a href="regras.html">Regras</a></li>-->
+            </ul>
+        </div>
+    </nav>
+    
+    <header>
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1>Horários das Partidas</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section>
+            <h2>Programação do Campeonato</h2>
+            <p>
+                Os horários da competição serão organizados de acordo com a disponibilidade dos competidores. Provavelmente os horários dos jogos serão na hora do almoço (12:30) na salinha de ECI. 
+            </p>
+            <p>
+                Competidores que não puderem presencialmente, faremos uma exceção para partidas virtuais.
+            </p>
+            <!--
+            <div class="filter-controls">
+                <button class="filter-btn active" data-day="all">Todos os Dias</button>
+                <button class="filter-btn" data-day="14">Dia 1 (14/06)</button>
+                <button class="filter-btn" data-day="15">Dia 2 (15/06)</button>
+                <button class="filter-btn" data-day="16">Dia 3 (16/06)</button>
+                <button class="filter-btn" data-day="17">Dia 4 (17/06)</button>
+            </div>
+            
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Horário</th>
+                        <th>Jogadores</th>
+                        <th>Fase</th>
+                        <th>Mesa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="day-header" data-day="14">
+                        <td colspan="5">Dia 1 - 14 de Junho</td>
+                    </tr>
+                    <tr class="next-match" data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">09:00</td>
+                        <td class="schedule-players">Jogador 1 vs Jogador 2</td>
+                        <td>Oitavas de Final</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">09:00</td>
+                        <td class="schedule-players">Jogador 3 vs Jogador 4</td>
+                        <td>Oitavas de Final</td>
+                        <td class="schedule-location">Mesa 2</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">09:00</td>
+                        <td class="schedule-players">Jogador 5 vs Jogador 6</td>
+                        <td>Oitavas de Final</td>
+                        <td class="schedule-location">Mesa 3</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">09:00</td>
+                        <td class="schedule-players">Jogador 7 vs Jogador 8</td>
+                        <td>Oitavas de Final</td>
+                        <td class="schedule-location">Mesa 4</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">11:30</td>
+                        <td class="schedule-players">Jogador 9 vs Jogador 10</td>
+                        <td>Oitavas de Final</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">11:30</td>
+                        <td class="schedule-players">Jogador 11 vs Jogador 12</td>
+                        <td>Oitavas de Final</td>
+                        <td class="schedule-location">Mesa 2</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">11:30</td>
+                        <td class="schedule-players">Jogador 13 vs Jogador 14</td>
+                        <td>Oitavas de Final</td>
+                        <td class="schedule-location">Mesa 3</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">11:30</td>
+                        <td class="schedule-players">Jogador 15 vs Jogador 16</td>
+                        <td>Oitavas de Final</td>
+                        <td class="schedule-location">Mesa 4</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">14:30</td>
+                        <td class="schedule-players">Perdedor OF1 vs Perdedor OF2</td>
+                        <td>Lower Bracket R1</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">14:30</td>
+                        <td class="schedule-players">Perdedor OF3 vs Perdedor OF4</td>
+                        <td>Lower Bracket R1</td>
+                        <td class="schedule-location">Mesa 2</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">14:30</td>
+                        <td class="schedule-players">Perdedor OF5 vs Perdedor OF6</td>
+                        <td>Lower Bracket R1</td>
+                        <td class="schedule-location">Mesa 3</td>
+                    </tr>
+                    <tr data-day="14">
+                        <td class="schedule-date">14/06</td>
+                        <td class="schedule-time">14:30</td>
+                        <td class="schedule-players">Perdedor OF7 vs Perdedor OF8</td>
+                        <td>Lower Bracket R1</td>
+                        <td class="schedule-location">Mesa 4</td>
+                    </tr>
+                    <tr class="day-header" data-day="15">
+                        <td colspan="5">Dia 2 - 15 de Junho</td>
+                    </tr>
+                    <tr data-day="15">
+                        <td class="schedule-date">15/06</td>
+                        <td class="schedule-time">09:00</td>
+                        <td class="schedule-players">Vencedor OF1 vs Vencedor OF2</td>
+                        <td>Quartas de Final</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr data-day="15">
+                        <td class="schedule-date">15/06</td>
+                        <td class="schedule-time">09:00</td>
+                        <td class="schedule-players">Vencedor OF3 vs Vencedor OF4</td>
+                        <td>Quartas de Final</td>
+                        <td class="schedule-location">Mesa 2</td>
+                    </tr>
+                    <tr data-day="15">
+                        <td class="schedule-date">15/06</td>
+                        <td class="schedule-time">09:00</td>
+                        <td class="schedule-players">Vencedor OF5 vs Vencedor OF6</td>
+                        <td>Quartas de Final</td>
+                        <td class="schedule-location">Mesa 3</td>
+                    </tr>
+                    <tr data-day="15">
+                        <td class="schedule-date">15/06</td>
+                        <td class="schedule-time">09:00</td>
+                        <td class="schedule-players">Vencedor OF7 vs Vencedor OF8</td>
+                        <td>Quartas de Final</td>
+                        <td class="schedule-location">Mesa 4</td>
+                    </tr>
+                    <tr data-day="15">
+                        <td class="schedule-date">15/06</td>
+                        <td class="schedule-time">11:30</td>
+                        <td class="schedule-players">Vencedor LB1 vs Vencedor LB2</td>
+                        <td>Lower Bracket R2</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr data-day="15">
+                        <td class="schedule-date">15/06</td>
+                        <td class="schedule-time">11:30</td>
+                        <td class="schedule-players">Vencedor LB3 vs Vencedor LB4</td>
+                        <td>Lower Bracket R2</td>
+                        <td class="schedule-location">Mesa 2</td>
+                    </tr>
+                    <tr data-day="15">
+                        <td class="schedule-date">15/06</td>
+                        <td class="schedule-time">14:30</td>
+                        <td class="schedule-players">Perdedor QF1 vs Vencedor LB5</td>
+                        <td>Lower Bracket R3</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr data-day="15">
+                        <td class="schedule-date">15/06</td>
+                        <td class="schedule-time">14:30</td>
+                        <td class="schedule-players">Perdedor QF2 vs Vencedor LB6</td>
+                        <td>Lower Bracket R3</td>
+                        <td class="schedule-location">Mesa 2</td>
+                    </tr>
+                    <tr data-day="15">
+                        <td class="schedule-date">15/06</td>
+                        <td class="schedule-time">16:30</td>
+                        <td class="schedule-players">Perdedor QF3 vs Perdedor QF4</td>
+                        <td>Lower Bracket R3</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr class="day-header" data-day="16">
+                        <td colspan="5">Dia 3 - 16 de Junho</td>
+                    </tr>
+                    <tr data-day="16">
+                        <td class="schedule-date">16/06</td>
+                        <td class="schedule-time">09:00</td>
+                        <td class="schedule-players">Vencedor QF1 vs Vencedor QF2</td>
+                        <td>Semifinal Upper</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr data-day="16">
+                        <td class="schedule-date">16/06</td>
+                        <td class="schedule-time">09:00</td>
+                        <td class="schedule-players">Vencedor QF3 vs Vencedor QF4</td>
+                        <td>Semifinal Upper</td>
+                        <td class="schedule-location">Mesa 2</td>
+                    </tr>
+                    <tr data-day="16">
+                        <td class="schedule-date">16/06</td>
+                        <td class="schedule-time">11:30</td>
+                        <td class="schedule-players">Vencedor LB7 vs Vencedor LB8</td>
+                        <td>Lower Bracket R4</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr data-day="16">
+                        <td class="schedule-date">16/06</td>
+                        <td class="schedule-time">11:30</td>
+                        <td class="schedule-players">Vencedor LB9 vs Perdedor SF1</td>
+                        <td>Lower Bracket R5</td>
+                        <td class="schedule-location">Mesa 2</td>
+                    </tr>
+                    <tr data-day="16">
+                        <td class="schedule-date">16/06</td>
+                        <td class="schedule-time">14:30</td>
+                        <td class="schedule-players">Vencedor SF1 vs Vencedor SF2</td>
+                        <td>Final Upper</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr data-day="16">
+                        <td class="schedule-date">16/06</td>
+                        <td class="schedule-time">14:30</td>
+                        <td class="schedule-players">Vencedor LB10 vs Perdedor SF2</td>
+                        <td>Lower Bracket R5</td>
+                        <td class="schedule-location">Mesa 2</td>
+                    </tr>
+                    <tr data-day="16">
+                        <td class="schedule-date">16/06</td>
+                        <td class="schedule-time">16:30</td>
+                        <td class="schedule-players">Vencedor LB11 vs Vencedor LB12</td>
+                        <td>Final Lower</td>
+                        <td class="schedule-location">Mesa 1</td>
+                    </tr>
+                    <tr class="day-header" data-day="17">
+                        <td colspan="5">Dia 4 - 17 de Junho</td>
+                    </tr>
+                    <tr data-day="17">
+                        <td class="schedule-date">17/06</td>
+                        <td class="schedule-time">10:00</td>
+                        <td class="schedule-players">Campeão Upper vs Campeão Lower</td>
+                        <td>Grande Final</td>
+                        <td class="schedule-location">Mesa Principal</td>
+                    </tr>
+                    <tr data-day="17">
+                        <td class="schedule-date">17/06</td>
+                        <td class="schedule-time">14:00</td>
+                        <td colspan="3" class="schedule-players" style="text-align: center;">Cerimônia de Premiação</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>Campeonato de Xadrez © 2025</p>
+            <p>Para mais informações, entre em contato: torneio@xadrezclub.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para o menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+            
+            // Filtro de dias
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const tableRows = document.querySelectorAll('.schedule-table tbody tr');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const day = this.getAttribute('data-day');
+                    
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show/hide table rows based on filter
+                    tableRows.forEach(row => {
+                        if (day === 'all') {
+                            row.style.display = '';
+                        } else {
+                            if (row.getAttribute('data-day') === day || row.classList.contains('day-header') && row.getAttribute('data-day') === day) {
+                                row.style.display = '';
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    !-->
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participantes - Campeonato de Xadrez ECI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c2c2c;
+            --accent-color: #8B4513;
+            --light-bg: #f8f8f8;
+            --text-color: #333;
+            --border-color: #e0e0e0;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+        
+        /* Estilos do Menu de Navegação */
+        nav {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2em;
+            text-decoration: none;
+            padding: 15px 0;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 1.5em;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links li {
+            position: relative;
+        }
+        
+        .nav-links a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 20px 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .nav-links a.active {
+            color: #fff;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 15px 0;
+        }
+        
+        /* Estilos do Header */
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1586165368502-1bad197a6461?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+        
+        /* Estilos para a tabela de participantes */
+        .participants-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .participants-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .participants-table th:hover {
+            background-color: #3a3a3a;
+        }
+        
+        .participants-table tr {
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+        }
+        
+        .participants-table tr:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+        
+        .participants-table tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .participants-table td {
+            padding: 12px 15px;
+        }
+        
+        .participant-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .participant-rating {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        
+        .search-filter {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1em;
+        }
+        
+        .sort-select {
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1em;
+            background-color: white;
+        }
+        
+        .sort-icon {
+            margin-left: 5px;
+            font-size: 0.8em;
+        }
+        
+        .sort-asc::after {
+            content: " ▲";
+        }
+        
+        .sort-desc::after {
+            content: " ▼";
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+            }
+            
+            .nav-links a {
+                padding: 15px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .participants-table {
+                font-size: 0.9em;
+            }
+            
+            .participants-table th, 
+            .participants-table td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">♚</span>
+                <span>Campeonato de Xadrez ECI</span>
+            </a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="horarios.html">Horários</a></li>
+                <li><a href="participantes.html" class="active">Participantes</a></li>
+                <!--<li><a href="regras.html">Regras</a></li>-->
+            </ul>
+        </div>
+    </nav>
+    
+    <header>
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1>Participantes do Campeonato</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section>
+            <h2>Jogadores Participantes</h2>
+            <p>Conheça os jogadores que participarão do Campeonato de Xadrez em formato de dupla eliminação.</p>
+            
+            <div class="search-filter">
+                <input type="text" class="search-input" placeholder="Buscar jogador..." id="searchInput">
+                <select class="sort-select" id="sortSelect">
+                    <option value="name">Ordenar por Nome</option>
+                    <option value="rating">Ordenar por Rating</option>
+                </select>
+            </div>
+            
+            <table class="participants-table" id="participantsTable">
+                <thead>
+                    <tr>
+                        <th class="sort-column" data-sort="name">Nome</th>
+                        <th class="sort-column" data-sort="rating">Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-name="Joseph Dario" data-rating="1150">
+                        <td class="participant-name">Joseph Dario</td>
+                        <td class="participant-rating">1150</td>
+                    </tr>
+                    <tr data-name="Leonardo Peres" data-rating="1200">
+                        <td class="participant-name">Leonardo Peres</td>
+                        <td class="participant-rating">1200</td>
+                    </tr>
+                    <tr data-name="João Pedro Cotrim" data-rating="800">
+                        <td class="participant-name">João Pedro Cotrim</td>
+                        <td class="participant-rating">800</td>
+                    </tr>
+                    <tr data-name="Pedro Cintra" data-rating="1200">
+                        <td class="participant-name">Pedro Cintra</td>
+                        <td class="participant-rating">1200</td>
+                    </tr>
+                    <tr data-name="Enzo Sampaio" data-rating="2000">
+                        <td class="participant-name">Enzo Sampaio</td>
+                        <td class="participant-rating">2000</td>
+                    </tr>
+                    <tr data-name="João Paulo Garcia" data-rating="1100">
+                        <td class="participant-name">João Paulo Garcia</td>
+                        <td class="participant-rating">1100</td>
+                    </tr>
+                    <tr data-name="Jeson Wen Chen" data-rating="800">
+                        <td class="participant-name">Jeson Wen Chen</td>
+                        <td class="participant-rating">800</td>
+                    </tr>
+                    <tr data-name="Isabella Macedo"  data-rating="800">
+                        <td class="participant-name">Isabella Macedo</td>
+                        <td class="participant-rating">800</td>
+                    </tr>
+                    <tr data-name="Lucas Perrin"  data-rating="2050">
+                        <td class="participant-name">Lucas Perrin</td>
+                        <td class="participant-rating">2050</td>
+                    </tr>
+                    <tr data-name="Alban Dujardib" data-rating="1050">
+                        <td class="participant-name">Alban Dujardib</td>
+                        <td class="participant-rating">1050</td>
+                    </tr>
+                    <tr data-name="Daniel Rebouças" data-rating="800">
+                        <td class="participant-name">Daniel Rebouças</td>
+                        <td class="participant-rating">800</td>
+                    </tr>
+                    <tr data-name="João Galetti" data-rating="2000">
+                        <td class="participant-name">João Galetti</td>
+                        <td class="participant-rating">2000</td>
+                    </tr>
+                    <tr data-name="João Pedro Moretti" data-rating="1000">
+                        <td class="participant-name">João Pedro Moretti</td>
+                        <td class="participant-rating">1000</td>
+                    </tr>
+                    <tr data-name="Vinícius Alcântara" data-rating="2100">
+                        <td class="participant-name">Vinícius Alcântara</td>
+                        <td class="participant-rating">2100</td>
+                    </tr>
+                    <tr data-name="Alexandre Chiacchio" data-rating="842">
+                        <td class="participant-name">Alexandre Chiacchio</td>
+                        <td class="participant-rating">842</td>
+                    </tr>
+                    <tr data-name="Marco Antonio Tronco Felix" data-rating="500">
+                        <td class="participant-name">Marco Antonio Tronco Felix</td>
+                        <td class="participant-rating">500</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>Grêmio ECI © 2025</p>
+            <p>Para mais informações, entre em contato com o Grêmio nos grupos de WhatsApp</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script para o menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+            
+            // Busca e ordenação
+            const searchInput = document.getElementById('searchInput');
+            const sortSelect = document.getElementById('sortSelect');
+            const participantsTable = document.getElementById('participantsTable');
+            const tableBody = participantsTable.querySelector('tbody');
+            const rows = Array.from(tableBody.querySelectorAll('tr'));
+            
+            // Função para filtrar as linhas
+            function filterRows() {
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                rows.forEach(row => {
+                    const name = row.getAttribute('data-name').toLowerCase();
+                    
+                    if (name.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Função para ordenar as linhas
+            function sortRows() {
+                const sortBy = sortSelect.value;
+                
+                rows.sort((a, b) => {
+                    if (sortBy === 'name') {
+                        return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
+                    } else if (sortBy === 'rating') {
+                        return parseInt(b.getAttribute('data-rating')) - parseInt(a.getAttribute('data-rating'));
+                    }
+                });
+                
+                // Reordenar as linhas no DOM
+                rows.forEach(row => {
+                    tableBody.appendChild(row);
+                });
+            }
+            
+            // Ordenação ao clicar nos cabeçalhos da tabela
+            const sortColumns = document.querySelectorAll('.sort-column');
+            sortColumns.forEach(column => {
+                column.addEventListener('click', function() {
+                    const sortBy = this.getAttribute('data-sort');
+                    sortSelect.value = sortBy;
+                    sortRows();
+                    
+                    // Atualizar ícones de ordenação
+                    sortColumns.forEach(col => col.classList.remove('sort-asc', 'sort-desc'));
+                    if (sortBy === 'rating') {
+                        this.classList.add('sort-desc');
+                    } else {
+                        this.classList.add('sort-asc');
+                    }
+                });
+            });
+            
+            // Event listeners
+            searchInput.addEventListener('input', filterRows);
+            sortSelect.addEventListener('change', sortRows);
+            
+            // Ordenar inicialmente por rating
+            sortSelect.value = 'rating';
+            sortRows();
+            document.querySelector('[data-sort="rating"]').classList.add('sort-desc');
+        });
+    </script>
+</body>
+</html>
